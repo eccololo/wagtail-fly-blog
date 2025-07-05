@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+{% if tag %}
+    <h1>Bellow are posts tagged "{{ tag }}"</h1>
+{% endif %}
+
+{% for post in blogposts %}
+    <div class="blogpost-item">
+        <p>
+            <a href="{% pageurl post %}">{{ post.title }}</a>
+        </p>
+    </div>
+{% endfor %}
+{% endblock content %}

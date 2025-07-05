@@ -1,10 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
-{% load static wagtailimages_tags %}
-
-<!-- {% block extra_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/blog_index_page.css' %}">
-{% endblock %} -->
+{% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
 <div class="blog-post-container">
@@ -48,7 +43,8 @@
         {% if tags %}
            <div class="gallery">
                 {% for tag in tags %}
-                    <a class="tag-button">{{ tag }}</a>
+                    {% slugurl 'tags' as tag_url %}
+                    <a class="tag-button" href="{{ tag_url }}?tag={{ tag }}">{{ tag }}</a>
                 {% endfor %}
            </div>
         {% endif %}
