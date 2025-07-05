@@ -39,6 +39,8 @@
         {% endif %}
     {% endwith %}
 
+    <a href="{{ page.get_parent.url }}">Return to blog</a>
+
     {% with tags=page.tags.all %}
         {% if tags %}
            <div class="gallery">
