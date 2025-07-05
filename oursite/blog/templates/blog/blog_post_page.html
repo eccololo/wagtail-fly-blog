@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags %}
 
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/blog_post_page.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="blog-post-container">
-    <h1>{{ page.title }}</h1>
+    <h1 class="title">{{ page.title }}</h1>
     {% with authors=page.authors.all %}
         {% if authors %}
             <div class="author-info">
@@ -39,11 +43,11 @@
         {% endif %}
     {% endwith %}
 
-    <a href="{{ page.get_parent.url }}">Return to blog</a>
+    <a class="return" href="{{ page.get_parent.url }}">Return to blog</a>
 
     {% with tags=page.tags.all %}
         {% if tags %}
-           <div class="gallery">
+           <div class="tags">
                 {% for tag in tags %}
                     {% slugurl 'tags' as tag_url %}
                     <a class="tag-button" href="{{ tag_url }}?tag={{ tag }}">{{ tag }}</a>

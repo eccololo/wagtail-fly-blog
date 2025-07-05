@@ -1,4 +1,41 @@
 .container {
     max-width: 800px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.blog-post {
+    background-color: rgb(209, 195, 195);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.post-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.thumbnail-image {
+    flex-shrink: 0;
+}
+
+.post-info {
+    flex: 1;
+    font-size: 1.1rem;
+}
+
+.blog-title {
+    color: #333;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #555;
+    text-align: center;
+    padding-bottom: 15px;
 }

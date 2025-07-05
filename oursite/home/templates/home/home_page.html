@@ -2,11 +2,16 @@
 {% load static %}
 {% load static wagtailcore_tags  %}
 
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+{% endblock %}
+
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-
-{{ page.title }}
-{{ page.body | richtext }}
+<div class="container">
+    {{ page.title }}
+    {{ page.body | richtext }}
+</div>
 
 {% endblock content %}

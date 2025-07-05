@@ -5,6 +5,7 @@ from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.snippets.models import register_snippet
+from wagtail.search import index
 
 from datetime import date
 
@@ -46,6 +47,15 @@ class BlogPostPage(Page):
     authors = ParentalManyToManyField("blog.Author", blank=True)
     tags = ClusterTaggableManager(through=BlogPostTag, blank=True)
 
+    def main_image(self):
+
+        thumbnail_image = self.image_gallery.first()
+
+        if thumbnail_image:
+            return thumbnail_image.image
+        else:
+            return None
+
 
     content_panels = Page.content_panels + [
         FieldPanel("date"),
@@ -54,6 +64,12 @@ class BlogPostPage(Page):
         FieldPanel("body"),
         InlinePanel("image_gallery", label="gallery images"),
         FieldPanel("tags")
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField("body"),
+        index.SearchField("intro"),
+        index.SearchField("title"),
     ]
 
 
